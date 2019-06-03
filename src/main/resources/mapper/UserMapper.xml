@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.newit.microservice.dao.UserMapper">
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into user(name, password, created_time) values(
+        #{name},
+         #{password},
+         now())
+    </insert>
+
+    <select id="selectUserById" resultType="org.newit.microservice.model.User">
+    select
+      id
+      , name
+      , password
+      , created_time
+    from user
+    where
+      id = #{id}
+  </select>
+</mapper>
