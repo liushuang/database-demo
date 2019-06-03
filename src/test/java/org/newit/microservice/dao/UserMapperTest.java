@@ -35,4 +35,17 @@ public class UserMapperTest {
         Assert.assertEquals("from test3", userFromDB.getName());
         Assert.assertEquals("password", userFromDB.getPassword());
     }
+
+    @Test
+    public void testSelectByName(){
+        User user = new User();
+        user.setName("from test4");
+        user.setPassword("password");
+        userMapper.insertUser(user);
+        Assert.assertTrue(user.getId() > 0);
+
+        User userFromDB = userMapper.selectUserByName(user.getName());
+        Assert.assertEquals("from test4", userFromDB.getName());
+        Assert.assertEquals("password", userFromDB.getPassword());
+    }
 }

@@ -1,6 +1,7 @@
 package org.newit.microservice.controller;
 
 import org.newit.microservice.dao.UserJdbcTmpl;
+import org.newit.microservice.dao.UserMapper;
 import org.newit.microservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class UserController {
     @Autowired
     private UserJdbcTmpl userJdbcTmpl;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @RequestMapping("/insertUser")
     @ResponseBody
     public int insertUser(@RequestParam("name")String name){
@@ -26,5 +30,12 @@ public class UserController {
     @ResponseBody
     public User getUser(@PathVariable("userId") int userId){
         return userJdbcTmpl.selectById(userId);
+    }
+
+
+    @RequestMapping("/getUserByName")
+    @ResponseBody
+    public User getUserByName(@RequestParam("name") String name){
+        return userMapper.selectUserByName(name);
     }
 }

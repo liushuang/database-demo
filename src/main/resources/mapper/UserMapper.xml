@@ -18,4 +18,16 @@
     where
       id = #{id}
   </select>
+
+    <select id="selectUserByName" resultType="org.newit.microservice.model.User">
+    select
+      id
+      , name
+      , password
+      , created_time
+    from user
+    where
+      name = #{name}
+      limit 1
+  </select>
 </mapper>
